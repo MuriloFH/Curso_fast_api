@@ -9,9 +9,7 @@ def test_hello_world_return_ok(client):
 
 
 def test_create_user(client):
-    response = client.post(
-        "/users/", json={"username": "teste_user", "email": "user@example.com", "password": "pass"}
-    )
+    response = client.post("/users/", json={"username": "teste_user", "email": "user@example.com", "password": "pass"})
 
     assert response.status_code == HTTPStatus.CREATED
     assert response.json() == {"username": "teste_user", "email": "user@example.com", "id": 1}
@@ -21,9 +19,7 @@ def test_read_users(client):
     response = client.get("/users")
 
     assert response.status_code == HTTPStatus.OK
-    assert response.json() == {
-        "users": [{"username": "teste_user", "email": "user@example.com", "id": 1}]
-    }
+    assert response.json() == {"users": [{"username": "teste_user", "email": "user@example.com", "id": 1}]}
 
 
 def test_read_user(client):
